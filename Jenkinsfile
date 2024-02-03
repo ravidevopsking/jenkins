@@ -11,6 +11,7 @@ pipeline {
         GREETING = 'Hello Jenkins' //environment is set
     }
     options {
+        ansiColor('xterm')    // for enabling color
         timeout(time: 1, unit: 'HOURS')  //if build run more than 1 hour, it will be timedout
         disableConcurrentBuilds()     // at a time multiple builds will not run, i.e one after another only they run 
     }
