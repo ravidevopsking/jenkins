@@ -23,9 +23,9 @@ pipeline {
 
         booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
 
-        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
-
         password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+
+        choice(name: 'action', choices: ['apply', 'destroy'], description: 'Pick something')
     }
     // build
     stages {
@@ -40,11 +40,24 @@ pipeline {
             }
         }
         stage('Deploy') {
+            when {
+                expression { 
+                    params.action == 'apply'
+                }
+            }
+            input {
+                message "Should we continue?"
+                ok "Yes, we should."
+                // submitter "alice,bob"
+                // parameters {
+                //     string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+                // }
+            }
             steps {
                 sh """
-                    echo  "Here I wrote shell script"
-                    echo "$GREETING"  #accessing set environment variable
-                    #sleep 10
+                    echo "this deploy stage is based on 'when' condition"
+                    echo "this step is executed and u can see only when u choose 'apply' parameter"
+                    echo "if i chose 'destroy' this step doesnt run"
                 """
             }
         }
