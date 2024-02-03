@@ -48,6 +48,7 @@ pipeline {
             input {
                 message "Should we continue?"
                 ok "Yes, we should."
+                //this block prompts user to continue or abort
                 // submitter "alice,bob"
                 // parameters {
                 //     string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
@@ -57,7 +58,7 @@ pipeline {
                 sh """
                     echo "this deploy stage is based on 'when' condition"
                     echo "this step is executed and u can see only when u choose 'apply' parameter"
-                    echo "if i chose 'destroy' this step doesnt run"
+                    echo "if i chose 'destroy' this step will be skipped"
                 """
             }
         }
