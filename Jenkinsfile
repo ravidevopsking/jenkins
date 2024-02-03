@@ -1,11 +1,12 @@
 pipeline {
-    agent {
-        node {
-            label 'AGENT-1' 
-            // comment in jenkins mention with two slashes(//)
-            //connecting jenkin server with agent-1 node
-        }
-    }
+    agent any
+    // agent {
+    //     node {
+    //         label 'AGENT-1' 
+    //         // comment in jenkins mention with two slashes(//)
+    //         //connecting jenkin server with agent-1 node
+    //     }
+    // }
     environment { 
         GREETING = 'Hello Jenkins' //environment is set
     }
