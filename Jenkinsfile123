@@ -1,0 +1,29 @@
+pipeline {
+    agent{
+        label 'xyz'
+    }
+
+    stages {
+        stage('checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/ravidevopsking/jenkins.git'
+            }
+        }
+        stage('first') {
+            steps {
+                sh 'echo "first stage" '
+            }
+        }
+        stage('second') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('third') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+
+    }
+}
